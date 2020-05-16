@@ -79,6 +79,28 @@ class TestGeocoord(unittest.TestCase):
         self.assertAlmostEqual(python_repr.latitude, 45.902778, places=6)
         self.assertAlmostEqual(python_repr.longitude, 9.041944, places=6)
 
+    def test_rdf_format_is_ok(self):
+        gc = Geocoord("POINT(45.9522 34.2345)")
+
+        valid = gc.validate()
+        python_repr = gc.to_python()
+
+        self.assertTrue(valid)
+        self.assertTrue(isinstance(python_repr, Point))
+        self.assertAlmostEqual(python_repr.latitude, 45.9522, places=4)
+        self.assertAlmostEqual(python_repr.longitude, 34.2345, places=4)
+
+    def test_rdf_format_with_spaces_is_ok(self):
+        gc = Geocoord("POINT ( 45.9522  34.2345 )")
+
+        valid = gc.validate()
+        python_repr = gc.to_python()
+
+        self.assertTrue(valid)
+        self.assertTrue(isinstance(python_repr, Point))
+        self.assertAlmostEqual(python_repr.latitude, 45.9522, places=4)
+        self.assertAlmostEqual(python_repr.longitude, 34.2345, places=4)
+
     def test_dms_out_of_range_degree_is_bad(self):
         gc = Geocoord("-92°12'80''N 9°2'3''E")
 

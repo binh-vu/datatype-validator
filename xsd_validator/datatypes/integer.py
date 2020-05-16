@@ -1,4 +1,4 @@
-from xsd_validator.datatypes.datatype import Datatype
+from .datatype import Datatype
 
 class Integer(Datatype):
     def __init__(self, raw: str):

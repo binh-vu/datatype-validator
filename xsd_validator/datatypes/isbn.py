@@ -1,7 +1,7 @@
 import re
 import isbnlib
 
-from xsd_validator.datatypes.datatype import Datatype
+from .datatype import Datatype
 
 class ISBN(Datatype):
     def __init__(self, raw: str):

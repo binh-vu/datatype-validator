@@ -10,5 +10,5 @@ setup(name='xsd-validator',
       long_description=open('README.md').read(),
       zip_safe=False,
       extras_require = {
-            'build': ['isbnlib', 'dateutil']
+            'build': ['isbnlib', 'iso8601']
       })

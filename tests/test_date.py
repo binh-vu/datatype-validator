@@ -1,7 +1,7 @@
 import unittest
 from xsd_validator.datatypes.date import Date
-from datetime import datetime
-from dateutil.tz import tzutc
+from datetime import datetime, timezone
+import iso8601
 
 class TestDate(unittest.TestCase):
     def test_iso_date_format_is_ok(self):
@@ -75,27 +75,6 @@ class TestDate(unittest.TestCase):
         self.assertTrue(isinstance(python_repr, datetime))
         self.assertEqual(python_repr, datetime(2000, 2, 29))
 
-    def test_with_words_is_ok(self):
-        b = Date("10 February 2020")
-
-        valid = b.validate()
-        python_repr = b.to_python()
-
-        self.assertTrue(valid)
-        self.assertTrue(isinstance(python_repr, datetime))
-        self.assertEqual(python_repr, datetime(2020, 2, 10))
-
-    
-    def test_with_words_complex_is_ok(self):
-        b = Date("Today is 20 February 2020!")
-
-        valid = b.validate()
-        python_repr = b.to_python()
-
-        self.assertTrue(valid)
-        self.assertTrue(isinstance(python_repr, datetime))
-        self.assertEqual(python_repr, datetime(2020, 2, 20))
-
     def test_iso8601_is_ok(self):
         b = Date("2016-01-01T00:00:00Z")
 
@@ -104,4 +83,4 @@ class TestDate(unittest.TestCase):
 
         self.assertTrue(valid)
         self.assertTrue(isinstance(python_repr, datetime))
-        self.assertEqual(python_repr, datetime(2016, 1, 1, tzinfo=tzutc()))
+        self.assertEqual(python_repr, datetime(2016, 1, 1, tzinfo=timezone.utc))

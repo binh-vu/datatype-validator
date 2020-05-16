@@ -1,10 +1,10 @@
 import re
 import calendar
 from datetime import datetime
-import dateutil.parser
+import iso8601
 
-from xsd_validator.datatypes.datatype import Datatype
-from xsd_validator.datatypes.real import Real
+from .datatype import Datatype
+from .real import Real
 
 # TODO: use also dateutils library to parse more sophisticated formats
 class Date(Datatype):
@@ -16,7 +16,7 @@ class Date(Datatype):
             self.convert_dmy_date,
             self.convert_mdy_date,
             self.convert_ydm_date,
-            self.convert_generic_date
+            self.convert_iso8601_date,
         ]
 
         for convert in converters:
@@ -42,14 +42,14 @@ class Date(Datatype):
         ydm_regex = r"^([0-9]{1,4})(-|/)([0-9]{1,2})(-|/)([0-9]{1,2})$"
         return Date._convert_date(ydm_regex, s, [3, 5, 1])
 
+
     @staticmethod
-    def convert_generic_date(s: str):
+    def convert_iso8601_date(s: str):
         if not Real(s).validate():
             try:
-                return dateutil.parser.parse(s, fuzzy_with_tokens=True)[0]
-            except (ValueError, OverflowError):
+                return iso8601.parse_date(s)
+            except (iso8601.ParseError, ValueError, OverflowError, TypeError):
                 return None
-
         return None
 
     @staticmethod

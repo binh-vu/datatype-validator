@@ -7,8 +7,8 @@ class Boolean(Datatype):
     def validate(self):
         self._raw = self._raw.lower()
         truth_table = {
-            True: ["y", "yes", "1", "true", "t"],
-            False: ["n", "no", "0", "false", "f"]
+            True: ["y", "yes", "true", "t"],
+            False: ["n", "no", "false", "f"]
         }
         for boolean, table in truth_table.items():
             if self._raw in table:

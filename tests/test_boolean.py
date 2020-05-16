@@ -72,26 +72,6 @@ class TestBoolean(unittest.TestCase):
         self.assertTrue(isinstance(python_repr, bool))
         self.assertEqual(python_repr, False)
 
-    def test_1_is_ok(self):
-        b = Boolean("1")
-
-        valid = b.validate()
-        python_repr = b.to_python()
-
-        self.assertTrue(valid)
-        self.assertTrue(isinstance(python_repr, bool))
-        self.assertEqual(python_repr, True)
-
-    def test_0_is_ok(self):
-        b = Boolean("0")
-
-        valid = b.validate()
-        python_repr = b.to_python()
-
-        self.assertTrue(valid)
-        self.assertTrue(isinstance(python_repr, bool))
-        self.assertEqual(python_repr, False)
-
     def test_empty_is_bad(self):
         b = Boolean("")
 

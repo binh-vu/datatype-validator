@@ -7,7 +7,7 @@ from xsd_validator.datatypes.datatype import Datatype
 # TODO: use also dateutils library to parse more sophisticated formats
 class Date(Datatype):
     def __init__(self, raw: str):
-        super(Date).__init__(raw)
+        super().__init__(raw)
 
     def validate(self):
         converters = [
@@ -20,7 +20,7 @@ class Date(Datatype):
             result = convert(self._raw)
             if result is not None:
                 assert (len(result) == 3)
-                self._repr = datetime.datetime(result[2], result[1], result[0], 0, 0)
+                self._repr = datetime(result[2], result[1], result[0], 0, 0)
                 return True
 
         return False
@@ -48,7 +48,7 @@ class Date(Datatype):
                 int(search.group(group_id))
                 for group_id in group
             )
-            if year >= 0:
+            if year > 0:
                 if 1 <= month <= 12:
                     if 1 <= day <= calendar.monthrange(year, month)[1]:
                         return day, month, year

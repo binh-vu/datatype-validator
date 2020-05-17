@@ -15,8 +15,8 @@ Datatypes currently supported:
 
 Just import library and call get_datatype function
 
-    import datatypes_validator
-    datatype = get_datatype("34.2")
-    print(datatype.is_valid())
-    print(datatype.to_python())
-    print(datatype.get_type())
+    import datatype
+    data = datatype.get_datatype("34.2")
+    print(data.is_valid())
+    print(data.to_python())
+    print(data.get_type())

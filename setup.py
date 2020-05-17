@@ -9,6 +9,6 @@ setup(name='datatypes_validator',
       packages=['datatype'],
       long_description=open('README.md').read(),
       zip_safe=False,
-      require = {
-            'build': ['isbnlib', 'iso8601']
-      })
+      install_requires=[
+          'isbnlib', 'iso8601'
+      ])

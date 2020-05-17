@@ -1,8 +1,8 @@
 from setuptools import setup
  
-setup(name='datatypes-validator',
+setup(name='datatypes_validator',
       version='0.1',
-      url='https://bitbucket.org/Cilium/xsdvalidator/src/master/',
+      url='https://bitbucket.org/Cilium/datatype-validator/src/master/',
       license='GPL',
       author='Cilium',
       description='datatypes validator',

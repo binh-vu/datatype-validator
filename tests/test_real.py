@@ -5,7 +5,7 @@ class TestReal(unittest.TestCase):
     def test_positive_real_is_ok(self):
         b = Real("10.0")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -15,7 +15,7 @@ class TestReal(unittest.TestCase):
     def test_negative_real_is_ok(self):
         b = Real("-10.0")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -25,7 +25,7 @@ class TestReal(unittest.TestCase):
     def test_exp_is_ok(self):
         b = Real("1.3E3")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -35,7 +35,7 @@ class TestReal(unittest.TestCase):
     def test_zero_is_ok(self):
         b = Real("0.0")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -45,7 +45,7 @@ class TestReal(unittest.TestCase):
     def test_one_is_ok(self):
         b = Real("1.0")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -55,27 +55,27 @@ class TestReal(unittest.TestCase):
     def test_NaN_is_bad(self):
         b = Real("NaN")
 
-        valid = b.validate()
+        valid = b.is_valid()
 
         self.assertFalse(valid)
 
     def test_alpha_string_is_bad(self):
         b = Real("hello")
 
-        valid = b.validate()
+        valid = b.is_valid()
 
         self.assertFalse(valid)
 
     def test_alphanumeric_string_is_bad(self):
         b = Real("hello3")
 
-        valid = b.validate()
+        valid = b.is_valid()
 
         self.assertFalse(valid)
 
     def test_empty_is_bad(self):
         b = Real("")
 
-        valid = b.validate()
+        valid = b.is_valid()
 
         self.assertFalse(valid)

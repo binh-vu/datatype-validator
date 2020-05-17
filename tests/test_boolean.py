@@ -5,7 +5,7 @@ class TestBoolean(unittest.TestCase):
     def test_true_is_ok(self):
         b = Boolean("true")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -15,7 +15,7 @@ class TestBoolean(unittest.TestCase):
     def test_uppercase_is_ok(self):
         b = Boolean("TrUE")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -25,7 +25,7 @@ class TestBoolean(unittest.TestCase):
     def test_false_is_ok(self):
         b = Boolean("false")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -35,7 +35,7 @@ class TestBoolean(unittest.TestCase):
     def test_y_is_ok(self):
         b = Boolean("y")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -45,7 +45,7 @@ class TestBoolean(unittest.TestCase):
     def test_yes_is_ok(self):
         b = Boolean("yes")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -55,7 +55,7 @@ class TestBoolean(unittest.TestCase):
     def test_n_is_ok(self):
         b = Boolean("n")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -65,7 +65,7 @@ class TestBoolean(unittest.TestCase):
     def test_no_is_ok(self):
         b = Boolean("no")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -75,20 +75,20 @@ class TestBoolean(unittest.TestCase):
     def test_empty_is_bad(self):
         b = Boolean("")
 
-        valid = b.validate()
+        valid = b.is_valid()
 
         self.assertFalse(valid)
 
     def test_2_is_bad(self):
         b = Boolean("2")
 
-        valid = b.validate()
+        valid = b.is_valid()
 
         self.assertFalse(valid)
 
     def test_negative_one_is_bad(self):
         b = Boolean("-1")
 
-        valid = b.validate()
+        valid = b.is_valid()
 
         self.assertFalse(valid)

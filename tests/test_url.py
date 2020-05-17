@@ -5,7 +5,7 @@ class TestUrl(unittest.TestCase):
     def test_generic_url_is_ok(self):
         b = Url("http://www.example.com")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -15,7 +15,7 @@ class TestUrl(unittest.TestCase):
     def test_https_url_is_ok(self):
         b = Url("https://www.example.com")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -25,7 +25,7 @@ class TestUrl(unittest.TestCase):
     def test_url_with_query_is_ok(self):
         b = Url("http://www.example.com?q=hello&u=1")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -35,7 +35,7 @@ class TestUrl(unittest.TestCase):
     def test_no_www_url_is_ok(self):
         b = Url("http://example.com")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -45,14 +45,14 @@ class TestUrl(unittest.TestCase):
     def test_empty_url_is_bad(self):
         b = Url("")
 
-        valid = b.validate()
+        valid = b.is_valid()
 
         self.assertFalse(valid)
 
     def test_no_domain_is_bad(self):
         b = Url("http://example")
 
-        valid = b.validate()
+        valid = b.is_valid()
 
         self.assertFalse(valid)
 
@@ -60,6 +60,6 @@ class TestUrl(unittest.TestCase):
     def test_not_http_is_bad(self):
         b = Url("www.example.com")
 
-        valid = b.validate()
+        valid = b.is_valid()
 
         self.assertFalse(valid)

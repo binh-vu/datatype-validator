@@ -1,10 +1,11 @@
 from .datatype import Datatype
+from xsd_validator.datatype_enum import DatatypeEnum
 
 class Boolean(Datatype):
     def __init__(self, raw: str):
         super().__init__(raw)
 
-    def validate(self):
+    def _validate(self):
         self._raw = self._raw.lower()
         truth_table = {
             True: ["y", "yes", "true", "t"],
@@ -16,6 +17,9 @@ class Boolean(Datatype):
                 return True
 
         return False
+
+    def get_type(self):
+        return DatatypeEnum.BOOLEAN
 
     def _is_NaN(self, s: str):
         return s.lower() == "nan"

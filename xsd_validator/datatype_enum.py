@@ -1,26 +1,15 @@
 from enum import Enum
 
-
-class DataTypeEnum(Enum):
-    NONE = ""
-    EMPTY = "empty"
-    GEOCOORD = "geo_coordinates"
-    HEXCOLOR = "hex_color"
-    NUMERIC = "numeric"
-    IP = "ip"
-    CREDITCARD = "credit_card"
-    IMAGE = "image"
+class DatatypeEnum(Enum):
+    INTEGER = "integer"
+    REAL = "real"
+    BOOLEAN = "boolean"
+    STRING = "string"
+    DATE = "date"
     URL = "url"
     EMAIL = "email"
     ISBN = "isbn"
-    ISO8601 = "iso8601"
-    BOOLEAN = "boolean"
-    DATE = "date"
-    DESCRIPTION = "description"
-    CURRENCY = "currency"
-    IATA = "iata"
-    ADDRESS = "address"
-    ID = "id"
+    GEOCOORD = "geo_coordinates"
 
     @staticmethod
     def get_datatype_info(data_type):
@@ -54,27 +43,15 @@ class DataTypeEnum(Enum):
         }
 
         datatype_map = {
-            DataTypeEnum.GEOCOORD: xml_string,
-            DataTypeEnum.ADDRESS: xml_string,
-            DataTypeEnum.HEXCOLOR: xml_string,
-            DataTypeEnum.URL: xml_any_uri,
-            DataTypeEnum.NUMERIC: [
-                xml_float,
-                xml_integer,
-                xml_double,
-            ],
-            DataTypeEnum.IMAGE: xml_string,
-            DataTypeEnum.CREDITCARD: xml_string,
-            DataTypeEnum.EMAIL: xml_string,
-            DataTypeEnum.IP: xml_string,
-            DataTypeEnum.ISBN: xml_string,
-            DataTypeEnum.ISO8601: xml_string,
-            DataTypeEnum.BOOLEAN: xml_boolean,
-            DataTypeEnum.DATE: xml_date,
-            DataTypeEnum.ID: xml_string,
-            DataTypeEnum.CURRENCY: xml_string,
-            DataTypeEnum.DESCRIPTION: xml_string,
-            DataTypeEnum.IATA: xml_string,
+            DatatypeEnum.INTEGER: xml_integer,
+            DatatypeEnum.REAL: [xml_float, xml_double],
+            DatatypeEnum.BOOLEAN: xml_boolean,
+            DatatypeEnum.STRING: xml_string,
+            DatatypeEnum.DATE: xml_date,
+            DatatypeEnum.URL: xml_any_uri,
+            DatatypeEnum.EMAIL: xml_string,
+            DatatypeEnum.ISBN: xml_string,
+            DatatypeEnum.GEOCOORD: xml_string,
         }
 
         return datatype_map.get(data_type, xml_string)

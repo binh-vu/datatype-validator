@@ -1,6 +1,7 @@
 import re
 
 from .datatype import Datatype
+from xsd_validator.datatype_enum import DatatypeEnum
 
 # TODO: Implement other useful methods or use directly geoPy
 class Point:
@@ -19,12 +20,15 @@ class Point:
     def longitude(self):
         return self._longitude
 
+    def __str__(self):
+        return f"{self.latitude} {self.longitude}"
+
 
 class Geocoord(Datatype):
     def __init__(self, raw: str):
         super().__init__(raw)
 
-    def validate(self):
+    def _validate(self):
         converters = [
             self.convert_dd_format,
             self.convert_dms_format,
@@ -39,6 +43,9 @@ class Geocoord(Datatype):
                 return True
 
         return False
+
+    def get_type(self):
+        return DatatypeEnum.GEOCOORD
 
     @staticmethod
     def convert_dd_format(s: str):

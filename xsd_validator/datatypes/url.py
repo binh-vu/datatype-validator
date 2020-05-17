@@ -2,12 +2,13 @@ import re
 from urllib.parse import unquote
 
 from .datatype import Datatype
+from xsd_validator.datatype_enum import DatatypeEnum
 
 class Url(Datatype):
     def __init__(self, raw: str):
         super().__init__(raw)
 
-    def validate(self):
+    def _validate(self):
         self._raw = unquote(self._raw)
 
         # NOTE: regex does not match urls without http header
@@ -19,3 +20,6 @@ class Url(Datatype):
             return True
 
         return False
+
+    def get_type(self):
+        return DatatypeEnum.URL

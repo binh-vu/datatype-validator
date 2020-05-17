@@ -5,13 +5,14 @@ import iso8601
 
 from .datatype import Datatype
 from .real import Real
+from xsd_validator.datatype_enum import DatatypeEnum
 
 # TODO: use also dateutils library to parse more sophisticated formats
 class Date(Datatype):
     def __init__(self, raw: str):
         super().__init__(raw)
 
-    def validate(self):
+    def _validate(self):
         converters = [
             self.convert_dmy_date,
             self.convert_mdy_date,
@@ -26,6 +27,9 @@ class Date(Datatype):
                 return True
 
         return False
+
+    def get_type(self):
+        return DatatypeEnum.DATE
 
     @staticmethod
     def convert_dmy_date(s: str):
@@ -45,7 +49,7 @@ class Date(Datatype):
 
     @staticmethod
     def convert_iso8601_date(s: str):
-        if not Real(s).validate():
+        if not Real(s).is_valid():
             try:
                 return iso8601.parse_date(s)
             except (iso8601.ParseError, ValueError, OverflowError, TypeError):

@@ -1,10 +1,11 @@
 from .datatype import Datatype
+from xsd_validator.datatype_enum import DatatypeEnum
 
 class Integer(Datatype):
     def __init__(self, raw: str):
         super().__init__(raw)
 
-    def validate(self):
+    def _validate(self):
         self._raw = self._normalize(self._raw)
 
         try:
@@ -12,6 +13,9 @@ class Integer(Datatype):
             return True
         except ValueError:
             return False
+
+    def get_type(self):
+        return DatatypeEnum.INTEGER
 
     def _normalize(self, s: str):
         return s.replace(",", ".")

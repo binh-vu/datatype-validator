@@ -7,7 +7,7 @@ class TestDate(unittest.TestCase):
     def test_iso_date_format_is_ok(self):
         b = Date("01/01/2000")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -17,7 +17,7 @@ class TestDate(unittest.TestCase):
     def test_iso_date_alt_format_is_ok(self):
         b = Date("01-01-2000")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -27,7 +27,7 @@ class TestDate(unittest.TestCase):
     def test_mdy_format_is_ok(self):
         b = Date("01/25/2000")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -37,7 +37,7 @@ class TestDate(unittest.TestCase):
     def test_ydm_format_is_ok(self):
         b = Date("2000/25/1")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -47,28 +47,28 @@ class TestDate(unittest.TestCase):
     def test_out_of_range_day_is_bad(self):
         b = Date("56/2/2000")
 
-        valid = b.validate()
+        valid = b.is_valid()
 
         self.assertFalse(valid)
 
     def test_out_of_range_month_is_bad(self):
         b = Date("13/13/2000")
 
-        valid = b.validate()
+        valid = b.is_valid()
 
         self.assertFalse(valid)
 
     def test_out_of_range_year_is_bad(self):
         b = Date("1/2/-3")
 
-        valid = b.validate()
+        valid = b.is_valid()
 
         self.assertFalse(valid)
 
     def test_leap_year_has_29_on_feb_is_ok(self):
         b = Date("29/2/2000")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)
@@ -78,7 +78,7 @@ class TestDate(unittest.TestCase):
     def test_iso8601_is_ok(self):
         b = Date("2016-01-01T00:00:00Z")
 
-        valid = b.validate()
+        valid = b.is_valid()
         python_repr = b.to_python()
 
         self.assertTrue(valid)

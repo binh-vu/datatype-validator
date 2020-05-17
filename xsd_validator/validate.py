@@ -21,31 +21,3 @@ def get_datatype(field: str):
             return converter
 
     return string.String(field)
-
-
-"""
-def main():
-    p = "/home/andrea/Download/Tables_Round1/tables/"
-    dirs = os.listdir(p)
-    res = set()
-    for filename in dirs:
-        fullpath = os.path.join(p, filename)
-        with open(fullpath) as f:
-            for line in f:
-                fields = [
-                    item.strip()
-                    for item in line.split(",")
-                ]
-                for field in fields:
-                    datatype = get_datatype(field)
-                    res.add((datatype.to_python(), type(datatype).__name__))
-
-    res = list(res)
-    res = sorted(res, key=lambda item: item[1])
-    for r in res:
-        print(r[0], "|", r[1])
-"""                   
-
-
-if __name__ == '__main__':
-    main()

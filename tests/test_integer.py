@@ -1,5 +1,5 @@
 import unittest
-from xsd_validator.datatypes.integer import Integer
+from datatype.validators.integer import Integer
 
 class TestInteger(unittest.TestCase):
     def test_positive_integer_is_ok(self):

@@ -1,5 +1,5 @@
 import unittest
-from xsd_validator.datatypes.isbn import ISBN
+from datatype.validators.isbn import ISBN
 
 class TestISBN(unittest.TestCase):
     def test_isbn10_is_ok(self):

@@ -1,3 +1,3 @@
 # README #
 
-XSD validator used by MantisTable, LamAPI and other projects
+Datatype validator used by MantisTable, LamAPI and other projects

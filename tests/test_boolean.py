@@ -1,5 +1,5 @@
 import unittest
-from xsd_validator.datatypes.boolean import Boolean
+from datatype.validators.boolean import Boolean
 
 class TestBoolean(unittest.TestCase):
     def test_true_is_ok(self):

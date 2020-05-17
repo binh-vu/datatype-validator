@@ -1,5 +1,5 @@
 import unittest
-from xsd_validator.datatypes.geocoord import Geocoord, Point
+from datatype.validators.geocoord import Geocoord, Point
 
 class TestGeocoord(unittest.TestCase):
     def test_dd_valid_format_is_ok(self):

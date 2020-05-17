@@ -5,7 +5,7 @@ import iso8601
 
 from .datatype import Datatype
 from .real import Real
-from xsd_validator.datatype_enum import DatatypeEnum
+from datatype.datatype_enum import DatatypeEnum
 
 # TODO: use also dateutils library to parse more sophisticated formats
 class Date(Datatype):

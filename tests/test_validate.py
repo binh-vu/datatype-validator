@@ -1,7 +1,7 @@
 import unittest
-from xsd_validator.validate import get_datatype
-from xsd_validator.datatype_enum import DatatypeEnum
-from xsd_validator.datatypes import geocoord
+from datatype.validate import get_datatype
+from datatype.datatype_enum import DatatypeEnum
+from datatype.validators import geocoord
 
 from datetime import datetime
 

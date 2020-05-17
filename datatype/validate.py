@@ -1,6 +1,6 @@
 import os
 
-from xsd_validator.datatypes import boolean, integer, isbn, real, date, email, url, geocoord, string
+from datatype.validators import boolean, integer, isbn, real, date, email, url, geocoord, string
 
 _datatypes_list = [
     boolean.Boolean,

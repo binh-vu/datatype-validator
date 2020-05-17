@@ -2,7 +2,7 @@ import re
 from urllib.parse import unquote
 
 from .datatype import Datatype
-from xsd_validator.datatype_enum import DatatypeEnum
+from datatype.datatype_enum import DatatypeEnum
 
 class Url(Datatype):
     def __init__(self, raw: str):

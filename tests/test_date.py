@@ -1,5 +1,5 @@
 import unittest
-from xsd_validator.datatypes.date import Date
+from datatype.validators.date import Date
 from datetime import datetime, timezone
 import iso8601
 

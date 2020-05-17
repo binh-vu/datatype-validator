@@ -1,5 +1,5 @@
 import unittest
-from xsd_validator.datatypes.real import Real
+from datatype.validators.real import Real
 
 class TestReal(unittest.TestCase):
     def test_positive_real_is_ok(self):

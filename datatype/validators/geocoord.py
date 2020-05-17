@@ -1,7 +1,7 @@
 import re
 
 from .datatype import Datatype
-from xsd_validator.datatype_enum import DatatypeEnum
+from datatype.datatype_enum import DatatypeEnum
 
 # TODO: Implement other useful methods or use directly geoPy
 class Point:

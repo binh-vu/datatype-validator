@@ -1,5 +1,5 @@
 import unittest
-from xsd_validator.datatypes.email import Email
+from datatype.validators.email import Email
 
 class TestEmail(unittest.TestCase):
     def test_generic_email_is_ok(self):

@@ -1,5 +1,5 @@
 import unittest
-from xsd_validator.datatypes.url import Url
+from datatype.validators.url import Url
 
 class TestUrl(unittest.TestCase):
     def test_generic_url_is_ok(self):

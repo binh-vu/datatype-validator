@@ -12,7 +12,7 @@ class TestDate(unittest.TestCase):
 
         self.assertTrue(valid)
         self.assertTrue(isinstance(python_repr, datetime))
-        self.assertEqual(python_repr, datetime(2000, 1, 1))
+        self.assertEqual(python_repr, datetime(2000, 1, 1, tzinfo=timezone.utc))
 
     def test_iso_date_alt_format_is_ok(self):
         b = Date("01-01-2000")
@@ -22,7 +22,7 @@ class TestDate(unittest.TestCase):
 
         self.assertTrue(valid)
         self.assertTrue(isinstance(python_repr, datetime))
-        self.assertEqual(python_repr, datetime(2000, 1, 1))
+        self.assertEqual(python_repr, datetime(2000, 1, 1, tzinfo=timezone.utc))
 
     def test_mdy_format_is_ok(self):
         b = Date("01/25/2000")
@@ -32,7 +32,7 @@ class TestDate(unittest.TestCase):
 
         self.assertTrue(valid)
         self.assertTrue(isinstance(python_repr, datetime))
-        self.assertEqual(python_repr, datetime(2000, 1, 25))
+        self.assertEqual(python_repr, datetime(2000, 1, 25, tzinfo=timezone.utc))
 
     def test_ydm_format_is_ok(self):
         b = Date("2000/25/1")
@@ -42,7 +42,7 @@ class TestDate(unittest.TestCase):
 
         self.assertTrue(valid)
         self.assertTrue(isinstance(python_repr, datetime))
-        self.assertEqual(python_repr, datetime(2000, 1, 25))
+        self.assertEqual(python_repr, datetime(2000, 1, 25, tzinfo=timezone.utc))
 
     def test_out_of_range_day_is_bad(self):
         b = Date("56/2/2000")
@@ -73,7 +73,7 @@ class TestDate(unittest.TestCase):
 
         self.assertTrue(valid)
         self.assertTrue(isinstance(python_repr, datetime))
-        self.assertEqual(python_repr, datetime(2000, 2, 29))
+        self.assertEqual(python_repr, datetime(2000, 2, 29, tzinfo=timezone.utc))
 
     def test_iso8601_is_ok(self):
         b = Date("2016-01-01T00:00:00Z")

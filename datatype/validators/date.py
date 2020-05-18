@@ -1,6 +1,6 @@
 import re
 import calendar
-from datetime import datetime
+from datetime import datetime, timezone
 import iso8601
 
 from .datatype import Datatype
@@ -67,6 +67,6 @@ class Date(Datatype):
             if year > 0:
                 if 1 <= month <= 12:
                     if 1 <= day <= calendar.monthrange(year, month)[1]:
-                        return datetime(year, month, day, 0, 0)
+                        return datetime(year, month, day, 0, 0, tzinfo=timezone.utc)
 
         return None

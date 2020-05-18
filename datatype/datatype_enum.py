@@ -1,4 +1,5 @@
 from enum import Enum
+from datatype.xsd import anyURI, boolean, date, numeric, string, geo
 
 class DatatypeEnum(Enum):
     INTEGER = "integer"
@@ -13,48 +14,19 @@ class DatatypeEnum(Enum):
 
     @staticmethod
     def get_datatype_info(data_type):
-        xml_string = {
-            "label": "xsd:string",
-            "uri": "http://www.w3.org/2001/XMLSchema#string"
-        }
-        xml_float = {
-            "label": "xsd:float",
-            "uri": "http://www.w3.org/2001/XMLSchema#float"
-        }
-        xml_integer = {
-            "label": "xsd:integer",
-            "uri": "http://www.w3.org/2001/XMLSchema#integer"
-        }
-        xml_double = {
-            "label": "xsd:double",
-            "uri": "http://www.w3.org/2001/XMLSchema#double"
-        }
-        xml_date = {
-            "label": "xsd:date",
-            "uri": "http://www.w3.org/2001/XMLSchema#date"
-        }
-        xml_boolean = {
-            "label": "xsd:boolean",
-            "uri": "http://www.w3.org/2001/XMLSchema#boolean"
-        }
-        xml_any_uri = {
-            "label": "xsd:anyURI",
-            "uri": "http://www.w3.org/2001/XMLSchema#anyURI"
-        }
-
         datatype_map = {
-            DatatypeEnum.INTEGER: xml_integer,
-            DatatypeEnum.REAL: [xml_float, xml_double],
-            DatatypeEnum.BOOLEAN: xml_boolean,
-            DatatypeEnum.STRING: xml_string,
-            DatatypeEnum.DATE: xml_date,
-            DatatypeEnum.URL: xml_any_uri,
-            DatatypeEnum.EMAIL: xml_string,
-            DatatypeEnum.ISBN: xml_string,
-            DatatypeEnum.GEOCOORD: xml_string,
+            DatatypeEnum.INTEGER: numeric.XsdNumeric(),
+            DatatypeEnum.REAL: numeric.XsdNumeric(),
+            DatatypeEnum.BOOLEAN: boolean.XsdBoolean(),
+            DatatypeEnum.STRING: string.XsdString(),
+            DatatypeEnum.DATE: date.XsdDate(),
+            DatatypeEnum.URL: anyURI.XsdUri(),
+            DatatypeEnum.EMAIL: string.XsdString(),
+            DatatypeEnum.ISBN: string.XsdString(),
+            DatatypeEnum.GEOCOORD: geo.XsdGeo(),
         }
 
-        return datatype_map.get(data_type, xml_string)
+        return datatype_map.get(data_type, string.XsdString())
 
     @staticmethod
     def get_datatype_uri(data_type):

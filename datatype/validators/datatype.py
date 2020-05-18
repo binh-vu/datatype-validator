@@ -1,3 +1,5 @@
+from datatype.datatype_enum import DatatypeEnum
+
 class Datatype:
     """
         Base class for all datatypes
@@ -15,6 +17,9 @@ class Datatype:
 
     def get_type(self):
         raise NotImplementedError()
+
+    def get_xsd_type(self):
+        return DatatypeEnum.get_datatype_info(self.get_type())
 
     def _validate(self):
         raise NotImplementedError()

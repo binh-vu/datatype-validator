@@ -1,6 +1,6 @@
 import os
 
-from datatype.validators import boolean, integer, isbn, real, date, email, url, geocoord, string
+from .validators import boolean, integer, isbn, real, date, email, url, geocoord, string
 
 _datatypes_list = [
     boolean.Boolean,

@@ -11,6 +11,7 @@ class DatatypeEnum(Enum):
     EMAIL = "email"
     ISBN = "isbn"
     GEOCOORD = "geo_coordinates"
+    UNKNOWN = "unknown"
 
     @staticmethod
     def get_datatype_info(data_type):
@@ -24,6 +25,7 @@ class DatatypeEnum(Enum):
             DatatypeEnum.EMAIL: string.XsdString(),
             DatatypeEnum.ISBN: string.XsdString(),
             DatatypeEnum.GEOCOORD: geo.XsdGeo(),
+            DatatypeEnum.UNKNOWN: string.XsdString(),
         }
 
         return datatype_map.get(data_type, string.XsdString())

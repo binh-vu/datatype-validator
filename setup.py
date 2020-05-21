@@ -1,7 +1,7 @@
 from setuptools import setup
  
 setup(name='datatypes_validator',
-      version='0.1',
+      version='0.3',
       url='https://bitbucket.org/Cilium/datatype-validator/src/master/',
       license='GPL',
       author='Cilium',

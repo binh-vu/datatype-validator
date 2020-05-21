@@ -11,6 +11,7 @@ _datatypes_list = [
     real.Real,
     date.Date,
     geocoord.Geocoord,
+    string.String
 ]
 
 def get_datatype(field: str):
@@ -20,4 +21,4 @@ def get_datatype(field: str):
         if valid:
             return converter
 
-    return string.String(field)
+    return string.Unknown(field)

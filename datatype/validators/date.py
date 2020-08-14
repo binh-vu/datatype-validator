@@ -18,6 +18,7 @@ class Date(Datatype):
             self.convert_mdy_date,
             self.convert_ymd_date,
             self.convert_iso8601_date,
+            self.convert_wikidata_date,
             self.convert_human_date,
         ]
 
@@ -77,12 +78,26 @@ class Date(Datatype):
         return None
 
     @staticmethod
-    def convert_iso8601_date(s: str):
-        if not Real(s).is_valid():
-            try:
-                return iso8601.parse_date(s)
-            except (iso8601.ParseError, ValueError, OverflowError, TypeError):
-                return None
+    def convert_iso8601_date(s: str):       
+        try:
+            return iso8601.parse_date(s)
+        except (iso8601.ParseError, ValueError, OverflowError, TypeError):
+            return None
+        
+    @staticmethod
+    def convert_wikidata_date(s: str):
+        if s.startswith("+"):
+            s = s[1:]
+            
+        regex = r"\d+\-00\-00T00\:00:00Z"
+        search = re.search(regex, s)
+        if search is not None:
+            d, t = s.split("T")
+            y, m, d = d.split("-")
+            
+            good_date = f"{y}-01-01"
+            return Date.convert_ymd_date(good_date)
+            
         return None
 
     @staticmethod

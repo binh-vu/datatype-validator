@@ -16,8 +16,9 @@ class Date(Datatype):
         converters = [
             self.convert_dmy_date,
             self.convert_mdy_date,
-            self.convert_ydm_date,
+            self.convert_ymd_date,
             self.convert_iso8601_date,
+            self.convert_human_date,
         ]
 
         for convert in converters:
@@ -42,10 +43,38 @@ class Date(Datatype):
         return Date._convert_date(mdy_regex, s, [3, 1, 5])
 
     @staticmethod
-    def convert_ydm_date(s: str):
-        ydm_regex = r"^([0-9]{1,4})(-|/)([0-9]{1,2})(-|/)([0-9]{1,2})$"
-        return Date._convert_date(ydm_regex, s, [3, 5, 1])
+    def convert_ymd_date(s: str):
+        ymd_regex = r"^([0-9]{1,4})(-|/)([0-9]{1,2})(-|/)([0-9]{1,2})$"
+        return Date._convert_date(ymd_regex, s, [5, 3, 1])
 
+    @staticmethod
+    def convert_human_date(s: str):
+        # e.g. 14 January 2020
+        months = [
+            "january", "february", "march", "april", "may",
+            "june", "july", "august", "september", "october",
+            "november", "december"
+        ]
+
+        fields = s.strip().split(" ")
+        if len(fields) < 3:
+            return None
+
+        day, month, year = tuple(fields[0:3])
+        if Date._test_integer(day) and Date._test_integer(year):
+            day = int(day)
+            year = int(year)
+            month = month.lower()
+        else:
+            return None
+
+        if year > 0:
+            if month in months:
+                month_idx = months.index(month) + 1
+                if 1 <= day <= calendar.monthrange(year, month_idx)[1]:
+                    return datetime(year, month_idx, day, 0, 0, tzinfo=timezone.utc)
+
+        return None
 
     @staticmethod
     def convert_iso8601_date(s: str):
@@ -70,3 +99,12 @@ class Date(Datatype):
                         return datetime(year, month, day, 0, 0, tzinfo=timezone.utc)
 
         return None
+
+    @staticmethod
+    def _test_integer(i: int):
+        try:
+            int(i)
+        except:
+            return False
+
+        return True

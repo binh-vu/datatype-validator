@@ -107,6 +107,17 @@ class Date(Datatype):
             
             good_date = f"{y}-01-01"
             return Date.convert_ymd_date(good_date)
+        else: 
+            regex2 = r"\d+\-\d+\-\d+T00\:00:00Z" 
+            search = re.search(regex2, s)
+            if search is not None: 
+                tfields = s.split("T") 
+                
+                if len(tfields) != 2: 
+                    return None 
+                
+                d, t = tuple(tfields) 
+                return Date.convert_ymd_date(d) 
             
         return None
 
